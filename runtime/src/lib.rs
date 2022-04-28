@@ -268,6 +268,12 @@ impl pallet_template::Config for Runtime {
 	type Event = Event;
 }
 
+/// Configure the drunkards-walk in pallets/drunkards_walk.
+impl drunkards_walk::Config for Runtime {
+	type Event = Event;
+	type EvolutionaryCeiling = frame_support::traits::ConstU32<100>;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -285,6 +291,7 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
+		DrunkardsWalk: drunkards_walk,
 	}
 );
 
